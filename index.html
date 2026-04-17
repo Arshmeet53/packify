@@ -2,13 +2,79 @@
 <html>
 <head>
   <title>Packify</title>
-</head>
-<body>
-  <h1>Packify is Live 🚀</h1>
-  <p>Website is working correctly</p>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+    }
 
-  <button onclick="alert('Button works!')">
-    Click Me
+    /* Loading screen */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      flex-direction: column;
+    }
+
+    /* Main content */
+    #app {
+      display: none;
+      text-align: center;
+      padding: 50px;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 15px;
+    }
+
+    .btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+  <div>Packify is starting...</div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+  <header>
+    <h1>Packify</h1>
+  </header>
+
+  <h2>Welcome 👋</h2>
+  <p>Your smart packaging platform is ready</p>
+
+  <button class="btn" onclick="alert('Welcome to Packify!')">
+    Enter Dashboard
   </button>
+</div>
+
+<script>
+  // Simulate app start delay
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  }, 2000); // 2 seconds loading
+</script>
+
 </body>
 </html>
