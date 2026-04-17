@@ -21,7 +21,7 @@
     input {
       padding: 10px;
       margin: 5px;
-      width: 200px;
+      width: 220px;
     }
 
     .btn {
@@ -56,6 +56,12 @@
       padding: 20px;
       margin: 10px 0;
       border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      background: #eee;
     }
 
     .logout {
@@ -64,6 +70,21 @@
       border: none;
       color: white;
       cursor: pointer;
+    }
+
+    /* SECTIONS */
+    #sectionView {
+      display: none;
+      padding: 20px;
+    }
+
+    .back {
+      background: black;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -88,27 +109,34 @@
 
   <div class="container">
 
-    <div class="card">
+    <div class="card" onclick="openSection('orders')">
       <h3>📦 Orders</h3>
-      <p>You have 0 active orders</p>
+      <p>Click to view orders</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openSection('shipping')">
       <h3>🚚 Shipping</h3>
-      <p>No shipments yet</p>
+      <p>Click to track shipments</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openSection('analytics')">
       <h3>📊 Analytics</h3>
-      <p>Data will appear here</p>
+      <p>View performance data</p>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openSection('settings')">
       <h3>⚙ Settings</h3>
-      <p>Manage your account</p>
+      <p>Manage account</p>
     </div>
 
   </div>
+</div>
+
+<!-- SECTION VIEW -->
+<div id="sectionView">
+  <button class="back" onclick="back()">⬅ Back</button>
+  <h2 id="sectionTitle"></h2>
+  <p id="sectionContent"></p>
 </div>
 
 <script>
@@ -127,6 +155,40 @@
   function logout() {
     document.getElementById("loginPage").style.display = "flex";
     document.getElementById("dashboard").style.display = "none";
+    document.getElementById("sectionView").style.display = "none";
+  }
+
+  function openSection(page) {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("sectionView").style.display = "block";
+
+    let title = "";
+    let content = "";
+
+    if(page === "orders") {
+      title = "📦 Orders";
+      content = "You currently have no active orders.";
+    }
+    if(page === "shipping") {
+      title = "🚚 Shipping";
+      content = "No shipments are active right now.";
+    }
+    if(page === "analytics") {
+      title = "📊 Analytics";
+      content = "Sales and performance data will appear here.";
+    }
+    if(page === "settings") {
+      title = "⚙ Settings";
+      content = "Manage your account settings here.";
+    }
+
+    document.getElementById("sectionTitle").innerText = title;
+    document.getElementById("sectionContent").innerText = content;
+  }
+
+  function back() {
+    document.getElementById("sectionView").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
   }
 </script>
 
