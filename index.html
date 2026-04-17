@@ -1,79 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Packify</title>
+  <title>Packify App</title>
   <style>
     body {
       margin: 0;
       font-family: Arial;
+      background: #f4f4f4;
     }
 
-    /* Loading screen */
-    #loader {
-      position: fixed;
-      width: 100%;
+    /* LOGIN PAGE */
+    #loginPage {
       height: 100vh;
-      background: black;
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
       flex-direction: column;
     }
 
-    /* Main content */
-    #app {
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* DASHBOARD */
+    #dashboard {
       display: none;
-      text-align: center;
-      padding: 50px;
     }
 
     header {
       background: #111;
       color: white;
       padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .btn {
-      background: #007bff;
-      color: white;
-      padding: 10px 20px;
+    .container {
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+
+    .logout {
+      background: red;
+      padding: 8px 12px;
       border: none;
-      border-radius: 5px;
+      color: white;
       cursor: pointer;
-      margin-top: 20px;
     }
   </style>
 </head>
 
 <body>
 
-<!-- LOADING SCREEN -->
-<div id="loader">
-  <div>Packify is starting...</div>
+<!-- LOGIN -->
+<div id="loginPage">
+  <h2>Packify Login</h2>
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
+  <button class="btn" onclick="login()">Login</button>
 </div>
 
-<!-- MAIN APP -->
-<div id="app">
+<!-- DASHBOARD -->
+<div id="dashboard">
+
   <header>
-    <h1>Packify</h1>
+    <h2>Packify Dashboard</h2>
+    <button class="logout" onclick="logout()">Logout</button>
   </header>
 
-  <h2>Welcome 👋</h2>
-  <p>Your smart packaging platform is ready</p>
+  <div class="container">
 
-  <button class="btn" onclick="alert('Welcome to Packify!')">
-    Enter Dashboard
-  </button>
+    <div class="card">
+      <h3>📦 Orders</h3>
+      <p>You have 0 active orders</p>
+    </div>
+
+    <div class="card">
+      <h3>🚚 Shipping</h3>
+      <p>No shipments yet</p>
+    </div>
+
+    <div class="card">
+      <h3>📊 Analytics</h3>
+      <p>Data will appear here</p>
+    </div>
+
+    <div class="card">
+      <h3>⚙ Settings</h3>
+      <p>Manage your account</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
-  // Simulate app start delay
-  setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  }, 2000); // 2 seconds loading
+  function login() {
+    let user = document.getElementById("user").value;
+    let pass = document.getElementById("pass").value;
+
+    if(user && pass) {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+    } else {
+      alert("Enter username & password");
+    }
+  }
+
+  function logout() {
+    document.getElementById("loginPage").style.display = "flex";
+    document.getElementById("dashboard").style.display = "none";
+  }
 </script>
 
 </body>
